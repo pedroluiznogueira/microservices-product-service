@@ -1,9 +1,8 @@
 package com.github.pedroluiznogueira.microservices.productservice.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -15,15 +14,21 @@ public class Product {
     private String name;
     private String description;
     private BigDecimal price;
+    @Transient
+    private String couponCode;
+    @Transient
+    private BigDecimal discount;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price) {
+    public Product(Long id, String name, String description, BigDecimal price, String couponCode, BigDecimal discount) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.couponCode = couponCode;
+        this.discount = discount;
     }
 
     public Long getId() {
@@ -56,5 +61,21 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getCouponCode() {
+        return couponCode;
+    }
+
+    public void setCouponCode(String couponCode) {
+        this.couponCode = couponCode;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 }
