@@ -1,5 +1,6 @@
 package com.github.pedroluiznogueira.microservices.productservice.controller;
 
+import com.github.pedroluiznogueira.microservices.productservice.model.CouponDto;
 import com.github.pedroluiznogueira.microservices.productservice.model.Product;
 import com.github.pedroluiznogueira.microservices.productservice.proxy.CouponProxy;
 import com.github.pedroluiznogueira.microservices.productservice.repository.ProductRepository;
@@ -21,9 +22,9 @@ public class ProductController {
 
     @PostMapping("create")
     public Product createProduct(@RequestBody Product product) {
-        Product retrievedProduct = couponProxy.retrieveDiscount(product.getCouponCode());
-        product.setPrice(product.getPrice().subtract(retrievedProduct.getDiscount()));
-        product.setDiscount(retrievedProduct.getDiscount());
+        CouponDto coupon = couponProxy.retrieveDiscount(product.getCouponCode());
+        product.setPrice(product.getPrice().subtract(coupon.getDiscount()));
+
         return productRepository.save(product);
     }
 }

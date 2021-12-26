@@ -1,5 +1,6 @@
 package com.github.pedroluiznogueira.microservices.productservice.proxy;
 
+import com.github.pedroluiznogueira.microservices.productservice.model.CouponDto;
 import com.github.pedroluiznogueira.microservices.productservice.model.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,5 +10,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface CouponProxy {
 
     @GetMapping("find/{code}")
-    Product retrieveDiscount(@PathVariable String code);
+    CouponDto retrieveDiscount(@PathVariable String code);
 }

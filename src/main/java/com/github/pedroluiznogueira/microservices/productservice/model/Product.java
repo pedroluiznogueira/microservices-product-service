@@ -14,21 +14,17 @@ public class Product {
     private String name;
     private String description;
     private BigDecimal price;
-    @Transient
     private String couponCode;
-    @Transient
-    private BigDecimal discount;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price, String couponCode, BigDecimal discount) {
+    public Product(Long id, String name, String description, BigDecimal price, String couponCode) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.couponCode = couponCode;
-        this.discount = discount;
     }
 
     public Long getId() {
@@ -69,13 +65,5 @@ public class Product {
 
     public void setCouponCode(String couponCode) {
         this.couponCode = couponCode;
-    }
-
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
     }
 }
